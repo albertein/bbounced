@@ -16,9 +16,9 @@ bbounced.player = (function() {
     var move = function() {
 	speed += 9.8 / 8 * direction;
 	y += speed * direction;
-	if (bbounced.keyboard.leftPressed())
+	if (bbounced.keyboard.isLeft())
 	    x -= 5;
-	else if (bbounced.keyboard.rightPressed())
+	else if (bbounced.keyboard.isRight())
 	    x += 5;
     };
     var check = function() {
@@ -26,6 +26,8 @@ bbounced.player = (function() {
 	    y = bbounced.sceneHeight - radius - 1;
 	    direction *= -1;
 	    speed *= .8
+	    if (bbounced.keyboard.isUp())
+		speed += 14;
 	}
 	if (y - radius <= 0) {
 	    y = radius + 1;
