@@ -1,4 +1,4 @@
-bbounce
+bbounced
 =======
 
-*bbounce* is a simple html5 platform game
+*bbounced* is a simple html5 platform game
