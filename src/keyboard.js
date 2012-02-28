@@ -3,6 +3,7 @@ bbounced.keyboard = (function() {
     var KEY_RIGHT = 39;
     var KEY_LEFT = 37;
     var KEY_UP = 38;
+    var KEY_RUN = 65;
     var leftPressed = false;
     var rigthPressed = false;
     document.addEventListener("keydown", function(e) {
@@ -15,6 +16,7 @@ bbounced.keyboard = (function() {
     return {
 	isLeft: function() { return keys[KEY_LEFT]; },
 	isRight: function() { return keys[KEY_RIGHT]; },
-	isUp: function() { return keys[KEY_UP]; }
+	isUp: function() { return keys[KEY_UP]; },
+	isRunning: function() { return keys[KEY_RUN]}
     };
 })();

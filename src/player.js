@@ -12,14 +12,22 @@ bbounced.player = (function() {
     
     var direction = 1;
     var speed = 0;
+    var walkSpeed = 5;
+    var runSpeed = 10;
 
     var move = function() {
 	speed += 9.8 / 8 * direction;
 	y += speed * direction;
-	if (bbounced.keyboard.isLeft())
-	    x -= 5;
-	else if (bbounced.keyboard.isRight())
-	    x += 5;
+	if (bbounced.keyboard.isLeft() || bbounced.keyboard.isRight()) {
+	    var deltaX = 0;
+	    if (bbounced.keyboard.isRunning() )
+		deltaX = runSpeed;
+	    else
+		deltaX = walkSpeed;
+	    if (bbounced.keyboard.isLeft())
+		deltaX *= -1;
+	    x += deltaX;
+	}
     };
     var check = function() {
 	if (y + radius >= bbounced.sceneHeight) {
