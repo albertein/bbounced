@@ -2,7 +2,7 @@ var bbounced = (function () {
     var canvas;
     var ctx;
     var sceneWidth = 1000;
-    var sceneHeight = 810;
+    var sceneHeight = 600;
     var fps = 60;
     var lastTick = 0;
     var msTick = 1000 / fps;
@@ -28,6 +28,8 @@ var bbounced = (function () {
 	    ctx = canvas.getContext("2d");
 	    ctx.lindeWidth = 1;
 	    tick();
-	}
+	},
+	sceneWidth: sceneWidth,
+	sceneHeight: sceneHeight
     };
 })();
