@@ -7,11 +7,15 @@ var bbounced = (function () {
     var lastTick = 0;
     var msTick = 1000 / fps;
     var fillBackground = function () {
-	ctx.fillStyle = "black";
+	var grad = ctx.createLinearGradient(0, 0, 0, sceneHeight);
+	grad.addColorStop(0, "rgb(155,188,247)");
+	grad.addColorStop(1, "white");
+	ctx.fillStyle = grad;
 	ctx.fillRect(0, 0, sceneWidth, sceneHeight);
     };
     var tick = function() {
 	fillBackground();
+	bbounced.map.paint(ctx);
 	bbounced.player.tick(ctx);
 	now = new Date().getTime();
 	if (lastTick !== 0) {
