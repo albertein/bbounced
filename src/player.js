@@ -31,11 +31,7 @@ bbounced.player = (function() {
     };
     var check = function() {
 	if (y + radius >= bbounced.sceneHeight) {
-	    y = bbounced.sceneHeight - radius - 1;
-	    direction *= -1;
-	    speed *= .8
-	    if (bbounced.keyboard.isUp())
-		speed += 14;
+	    //die
 	}
 	if (y - radius <= 0) {
 	    y = radius + 1;
@@ -43,6 +39,21 @@ bbounced.player = (function() {
 	}
 	if (speed <= 0) {
 	    direction *= -1;
+	}
+	var segment = bbounced.map.segments[
+	    Math.floor(x / bbounced.map.segmentSize)];
+	var slope = (segment.y2 - segment.y1) / (segment.x2 - segment.x1);
+	//y = mx + b, we already got m (slope), giving a single point on the
+	//line we can now calculate the value of b to find if the ball
+	//has collided with the ground. n = y - mx
+	var b = segment.y1 - slope * segment.x1;
+	var yOnRadius = slope * x + b;
+	if (y + radius >= yOnRadius) {
+	    y = yOnRadius - radius;
+	    direction *= -1;
+	    speed *= .8
+	    if (bbounced.keyboard.isUp())
+		speed += 14;
 	}
     };
     var tick = function(ctx) {
